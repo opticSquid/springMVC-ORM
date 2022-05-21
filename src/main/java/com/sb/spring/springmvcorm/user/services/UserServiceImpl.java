@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.sb.spring.springmvcorm.user.dao.UserDao;
 import com.sb.spring.springmvcorm.user.entity.User;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -48,6 +49,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> getUsers() {
-		return dao.findUsers();
+		List<User> users = dao.findUsers();
+		Collections.sort(users);
+		return users;
 	}
 }
