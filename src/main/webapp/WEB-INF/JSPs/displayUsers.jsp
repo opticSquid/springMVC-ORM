@@ -8,15 +8,12 @@
 <title>All User Details</title>
 </head>
 <body>
-	<ol>
+	<ul>
 		<c:forEach items="${users}" var="user">
 			<li>
-				<div>${user.id}</div> 
-				<span>
-					${user.name} ${user.email}
-				</span>
+				<div>${user.id}</div> <span> ${user.name} ${user.email} </span>
 			</li>
 		</c:forEach>
-	</ol>
+	</ul>
 </body>
 </html>
