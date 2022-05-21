@@ -1,7 +1,6 @@
 package com.sb.spring.springmvcorm.user.entity;
 
 import javax.persistence.Entity;
-
 import javax.persistence.Id;
 import javax.persistence.Table;
 

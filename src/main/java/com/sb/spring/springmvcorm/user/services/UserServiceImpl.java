@@ -1,11 +1,14 @@
 package com.sb.spring.springmvcorm.user.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.sb.spring.springmvcorm.user.dao.UserDao;
 import com.sb.spring.springmvcorm.user.entity.User;
+
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -41,5 +44,10 @@ public class UserServiceImpl implements UserService {
 		// in a single transaction
 		return dao.create(user);
 
+	}
+
+	@Override
+	public List<User> getUsers() {
+		return dao.findUsers();
 	}
 }
