@@ -12,6 +12,8 @@
     http://www.springframework.org/schema/tx/spring-tx.xsd
     ">
 	<tx:annotation-driven />
+	<context:component-scan
+		base-package="com.sb.spring.springmvcorm.user"/>
 	<bean
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		name="ds">
@@ -24,7 +26,7 @@
 	<bean
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
 		name="factory">
-		<property name="dataSource" ref="ds"></property>
+		<property name="dataSource" ref="ds"/>
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
@@ -35,7 +37,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>
-					org.sb.retry.springorm.springorm1.entities.Student
+					com.sb.spring.springmvcorm.user.entity.User
 				</value>
 			</list>
 		</property>
@@ -44,8 +46,8 @@
 		name="hibernateTemplate">
 		<property name="sessionFactory" ref="factory"></property>
 	</bean>
-	<bean class="org.sb.retry.springorm.springorm1.dao.StudentDAO"
-		name="studentDao">
+	<bean class="com.sb.spring.springmvcorm.user.dao.UserDaoImpl"
+		name="UserDao">
 		<property name="hibernateTemplate" ref="hibernateTemplate">
 		</property>
 	</bean>
