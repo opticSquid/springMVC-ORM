@@ -12,9 +12,18 @@ import javax.transaction.Transactional;
 @Service
 public class UserServiceImpl implements UserService {
 	@Autowired
-	@Qualifier("UserDaoImpl")
+	@Qualifier("userDaoImpl")
 	private UserDao dao;
 
+	/*
+	 * userDaoImpl is the default bean name of userDaoImpl if qualifier is not
+	 * provided then spring gets confused whether to import the interface or class
+	 * If interface is provided spring complains interface cannot be instantiated
+	 * So, we specifically tell spring to get the class which implements the
+	 * interface If multiple classes implement the same interface then @Qualifer
+	 * should be used in this class and @Component("<bean_name>") in the inheriting
+	 * class so that every instance of that interface can be uniquely identified
+	 */
 	public UserDao getDao() {
 		return dao;
 	}
