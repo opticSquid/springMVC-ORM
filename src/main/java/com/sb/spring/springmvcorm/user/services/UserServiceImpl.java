@@ -53,4 +53,9 @@ public class UserServiceImpl implements UserService {
 		Collections.sort(users);
 		return users;
 	}
+
+	@Override
+	public User getUser(Integer id) {
+		return dao.findUser(id);
+	}
 }

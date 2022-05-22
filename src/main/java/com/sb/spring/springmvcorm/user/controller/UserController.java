@@ -9,6 +9,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sb.spring.springmvcorm.user.entity.User;
 import com.sb.spring.springmvcorm.user.services.UserService;
@@ -42,7 +44,22 @@ public class UserController {
 	@RequestMapping("getUsers")
 	public String getUser(ModelMap model) {
 		List<User> users = service.getUsers();
-		model.addAttribute("users",users);
+		model.addAttribute("users", users);
 		return "displayUsers";
+	}
+
+	@RequestMapping("validateEmail")
+	public @ResponseBody String validateEmail(@RequestParam("id") int id) {
+		/*
+		 * @ResponseBody tells spring the returned string value should go to response
+		 * body and it should not try to resolve it to a view name.
+		 */
+		User user = service.getUser(id);
+		String msg = "";
+		if (user != null) {
+			msg = id + " already exists";
+
+		}
+		return msg;
 	}
 }
